@@ -1,0 +1,48 @@
+{
+  "ast": null,
+  "code": "import _asyncToGenerator from \"/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js\";\nimport { __decorate } from \"tslib\";\nimport { LitElement, html } from 'lit-element';\nimport { property, customElement } from 'lit/decorators.js';\nimport { WeatherService } from '../service/weather.service';\nlet WeatherDisplay = class WeatherDisplay extends LitElement {\n  constructor(httpClient) {\n    super();\n    this.httpClient = httpClient;\n    this.cityName = '';\n    this.errorMessage = ''; // Added for error handling\n  }\n\n  onSubmit(event) {\n    var _this = this;\n    return _asyncToGenerator(function* () {\n      event.preventDefault();\n      try {\n        const weatherService = new WeatherService(_this.httpClient);\n        const weatherData = yield weatherService.getWeatherData(_this.cityName);\n        _this.temperatureResult = weatherData; // Assign fetched data\n      } catch (error) {\n        _this.errorMessage = 'An error occurred while fetching weather data.'; // Display error message\n      }\n    })();\n  }\n\n  handleCityChange(event) {\n    this.cityName = event.target.value;\n  }\n  render() {\n    return html`\n      <div class=\"container\">\n        <div class=\"weather-container\">\n          <div class=\"search\">\n            <form @submit=${this.onSubmit}>\n              <input\n                type=\"text\"\n                placeholder=\"Search City\"\n                .value=${this.cityName}\n                @change=${this.handleCityChange}\n              />\n            </form>\n            ${this.errorMessage ? html`<p class=\"error-message\">${this.errorMessage}</p>` : ''}\n            <div class=\"upper-data\">\n              <img\n                src=\"../assets/mountains.webp\"\n                alt=\"Mountains Image\"\n                ?hidden=${this.temperatureResult?.main?.temp_max < 14}\n              />\n              <img\n                src=\"../assets/cold.jpg\"\n                alt=\"Cold Image\"\n                ?hidden=${this.temperatureResult?.main?.temp_max >= 14}\n              />\n            </div>\n            <hr />\n            <div class=\"weather-data\" ?hidden=${!this.temperatureResult}>\n              <div class=\"location\">${this.temperatureResult?.name || ''}</div>\n              <div\n                class=\"temperature\"\n                ?hidden=${this.temperatureResult?.main?.temp_max < 14}\n              >\n                ${this.temperatureResult?.main?.temp_max}°C\n              </div>\n              <div\n                class=\"temperature\"\n                ?hidden=${this.temperatureResult?.main?.temp_max >= 14}\n              >\n                - ${this.temperatureResult?.main?.temp_max}°C\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    `;\n  }\n};\n__decorate([property({\n  type: String\n})], WeatherDisplay.prototype, \"cityName\", void 0);\n__decorate([property({\n  type: String\n})], WeatherDisplay.prototype, \"errorMessage\", void 0);\nWeatherDisplay = __decorate([customElement('weather-display')], WeatherDisplay);\nexport { WeatherDisplay };",
+  "map": {
+    "version": 3,
+    "mappings": ";;AACA,SAASA,UAAU,EAAEC,IAAI,QAAQ,aAAa;AAC9C,SAASC,QAAQ,EAAEC,aAAa,QAAQ,mBAAmB;AAC3D,SAASC,cAAc,QAAQ,4BAA4B;AAGpD,IAAMC,cAAc,GAApB,MAAMA,cAAe,SAAQL,UAAU;EAI5CM,YAAoBC,UAAsB;IACxC,KAAK,EAAE;IADW,eAAU,GAAVA,UAAU;IAHF,aAAQ,GAAG,EAAE;IACb,iBAAY,GAAG,EAAE,CAAC,CAAC;EAI/C;;EAEMC,QAAQ,CAACC,KAAU;IAAA;IAAA;MACvBA,KAAK,CAACC,cAAc,EAAE;MACtB,IAAI;QACF,MAAMC,cAAc,GAAG,IAAIP,cAAc,CAAC,KAAI,CAACG,UAAU,CAAC;QAC1D,MAAMK,WAAW,SAASD,cAAc,CAACE,cAAc,CAAC,KAAI,CAACC,QAAQ,CAAC;QACtE,KAAI,CAACC,iBAAiB,GAAGH,WAAW,CAAC,CAAC;OACvC,CAAC,OAAOI,KAAK,EAAE;QACd,KAAI,CAACC,YAAY,GAAG,gDAAgD,CAAC,CAAC;;IACvE;EACH;;EAEAC,gBAAgB,CAACT,KAAU;IACzB,IAAI,CAACK,QAAQ,GAAGL,KAAK,CAACU,MAAM,CAACC,KAAK;EACpC;EAESC,MAAM;IACb,OAAOpB,IAAI;;;;4BAIa,IAAI,CAACO,QAAQ;;;;yBAIhB,IAAI,CAACM,QAAQ;0BACZ,IAAI,CAACI,gBAAgB;;;cAGjC,IAAI,CAACD,YAAY,GACfhB,IAAI,4BAA4B,IAAI,CAACgB,YAAY,MAAM,GACvD,EAAE;;;;;0BAKQ,IAAI,CAACF,iBAAiB,EAAEO,IAAI,EAAEC,QAAQ,GAAG,EAAE;;;;;0BAK3C,IAAI,CAACR,iBAAiB,EAAEO,IAAI,EAAEC,QAAQ,IAAI,EAAE;;;;gDAItB,CAAC,IAAI,CAACR,iBAAiB;sCACjC,IAAI,CAACA,iBAAiB,EAAES,IAAI,IAAI,EAAE;;;0BAG9C,IAAI,CAACT,iBAAiB,EAAEO,IAAI,EAAEC,QAAQ,GAAG,EAAE;;kBAEnD,IAAI,CAACR,iBAAiB,EAAEO,IAAI,EAAEC,QAAQ;;;;0BAI9B,IAAI,CAACR,iBAAiB,EAAEO,IAAI,EAAEC,QAAQ,IAAI,EAAE;;oBAElD,IAAI,CAACR,iBAAiB,EAAEO,IAAI,EAAEC,QAAQ;;;;;;KAMrD;EACH;CACD;AAvE6BE,YAA3BvB,QAAQ,CAAC;EAAEwB,IAAI,EAAEC;AAAM,CAAE,CAAC,gDAAe;AACdF,YAA3BvB,QAAQ,CAAC;EAAEwB,IAAI,EAAEC;AAAM,CAAE,CAAC,oDAAmB;AAFnCtB,cAAc,eAD1BF,aAAa,CAAC,iBAAiB,CAAC,GACpBE,cAAc,CAwE1B;SAxEYA,cAAc",
+    "names": [
+      "LitElement",
+      "html",
+      "property",
+      "customElement",
+      "WeatherService",
+      "WeatherDisplay",
+      "constructor",
+      "httpClient",
+      "onSubmit",
+      "event",
+      "preventDefault",
+      "weatherService",
+      "weatherData",
+      "getWeatherData",
+      "cityName",
+      "temperatureResult",
+      "error",
+      "errorMessage",
+      "handleCityChange",
+      "target",
+      "value",
+      "render",
+      "main",
+      "temp_max",
+      "name",
+      "__decorate",
+      "type",
+      "String"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/src/app/lit-elements/weather.ts"
+    ],
+    "sourcesContent": [
+      "import { HttpClient } from '@angular/common/http';\nimport { LitElement, html } from 'lit-element';\nimport { property, customElement } from 'lit/decorators.js';\nimport { WeatherService } from '../service/weather.service';\n\n@customElement('weather-display')\nexport class WeatherDisplay extends LitElement {\n  @property({ type: String }) cityName = '';\n  @property({ type: String }) errorMessage = ''; // Added for error handling\n  temperatureResult: any;\n  constructor(private httpClient: HttpClient) {\n    super();\n  }\n\n  async onSubmit(event: any) {\n    event.preventDefault();\n    try {\n      const weatherService = new WeatherService(this.httpClient);\n      const weatherData = await weatherService.getWeatherData(this.cityName);\n      this.temperatureResult = weatherData; // Assign fetched data\n    } catch (error) {\n      this.errorMessage = 'An error occurred while fetching weather data.'; // Display error message\n    }\n  }\n\n  handleCityChange(event: any) {\n    this.cityName = event.target.value;\n  }\n\n  override render() {\n    return html`\n      <div class=\"container\">\n        <div class=\"weather-container\">\n          <div class=\"search\">\n            <form @submit=${this.onSubmit}>\n              <input\n                type=\"text\"\n                placeholder=\"Search City\"\n                .value=${this.cityName}\n                @change=${this.handleCityChange}\n              />\n            </form>\n            ${this.errorMessage\n              ? html`<p class=\"error-message\">${this.errorMessage}</p>`\n              : ''}\n            <div class=\"upper-data\">\n              <img\n                src=\"../assets/mountains.webp\"\n                alt=\"Mountains Image\"\n                ?hidden=${this.temperatureResult?.main?.temp_max < 14}\n              />\n              <img\n                src=\"../assets/cold.jpg\"\n                alt=\"Cold Image\"\n                ?hidden=${this.temperatureResult?.main?.temp_max >= 14}\n              />\n            </div>\n            <hr />\n            <div class=\"weather-data\" ?hidden=${!this.temperatureResult}>\n              <div class=\"location\">${this.temperatureResult?.name || ''}</div>\n              <div\n                class=\"temperature\"\n                ?hidden=${this.temperatureResult?.main?.temp_max < 14}\n              >\n                ${this.temperatureResult?.main?.temp_max}°C\n              </div>\n              <div\n                class=\"temperature\"\n                ?hidden=${this.temperatureResult?.main?.temp_max >= 14}\n              >\n                - ${this.temperatureResult?.main?.temp_max}°C\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    `;\n  }\n}\n\n\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

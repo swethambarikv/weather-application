@@ -1,0 +1,38 @@
+{
+  "ast": null,
+  "code": "/**\n * @license\n * Copyright 2021 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\n/**\n * A property decorator that converts a class property into a getter that\n * returns the `assignedElements` of the given `slot`. Provides a declarative\n * way to use\n * [`HTMLSlotElement.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).\n *\n * Can be passed an optional {@linkcode QueryAssignedElementsOptions} object.\n *\n * Example usage:\n * ```ts\n * class MyElement {\n *   @queryAssignedElements({ slot: 'list' })\n *   listItems!: Array<HTMLElement>;\n *   @queryAssignedElements()\n *   unnamedSlotEls!: Array<HTMLElement>;\n *\n *   render() {\n *     return html`\n *       <slot name=\"list\"></slot>\n *       <slot></slot>\n *     `;\n *   }\n * }\n * ```\n *\n * Note, the type of this property should be annotated as `Array<HTMLElement>`.\n *\n * @category Decorator\n */\nexport function queryAssignedElements(options) {\n  return (obj, name) => {\n    const {\n      slot,\n      selector\n    } = options ?? {};\n    const slotSelector = `slot${slot ? `[name=${slot}]` : ':not([name])'}`;\n    return desc(obj, name, {\n      get() {\n        const slotEl = this.renderRoot?.querySelector(slotSelector);\n        const elements = slotEl?.assignedElements(options) ?? [];\n        return selector === undefined ? elements : elements.filter(node => node.matches(selector));\n      }\n    });\n  };\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "desc",
+      "queryAssignedElements",
+      "options",
+      "obj",
+      "name",
+      "slot",
+      "selector",
+      "slotSelector",
+      "get",
+      "slotEl",
+      "renderRoot",
+      "querySelector",
+      "elements",
+      "assignedElements",
+      "undefined",
+      "filter",
+      "node",
+      "matches"
+    ],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@lit/reactive-element/development/decorators/query-assigned-elements.js"
+    ],
+    "sourcesContent": [
+      "/**\n * @license\n * Copyright 2021 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\n/**\n * A property decorator that converts a class property into a getter that\n * returns the `assignedElements` of the given `slot`. Provides a declarative\n * way to use\n * [`HTMLSlotElement.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).\n *\n * Can be passed an optional {@linkcode QueryAssignedElementsOptions} object.\n *\n * Example usage:\n * ```ts\n * class MyElement {\n *   @queryAssignedElements({ slot: 'list' })\n *   listItems!: Array<HTMLElement>;\n *   @queryAssignedElements()\n *   unnamedSlotEls!: Array<HTMLElement>;\n *\n *   render() {\n *     return html`\n *       <slot name=\"list\"></slot>\n *       <slot></slot>\n *     `;\n *   }\n * }\n * ```\n *\n * Note, the type of this property should be annotated as `Array<HTMLElement>`.\n *\n * @category Decorator\n */\nexport function queryAssignedElements(options) {\n    return ((obj, name) => {\n        const { slot, selector } = options ?? {};\n        const slotSelector = `slot${slot ? `[name=${slot}]` : ':not([name])'}`;\n        return desc(obj, name, {\n            get() {\n                const slotEl = this.renderRoot?.querySelector(slotSelector);\n                const elements = slotEl?.assignedElements(options) ?? [];\n                return (selector === undefined\n                    ? elements\n                    : elements.filter((node) => node.matches(selector)));\n            },\n        });\n    });\n}\n"
+    ],
+    "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA,SAASA,IAAI,QAAQ,WAAW;AAChC;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,OAAO,SAASC,qBAAqB,CAACC,OAAO,EAAE;EAC3C,OAAQ,CAACC,GAAG,EAAEC,IAAI,KAAK;IACnB,MAAM;MAAEC,IAAI;MAAEC;IAAS,CAAC,GAAGJ,OAAO,IAAI,CAAC,CAAC;IACxC,MAAMK,YAAY,GAAI,OAAMF,IAAI,GAAI,SAAQA,IAAK,GAAE,GAAG,cAAe,EAAC;IACtE,OAAOL,IAAI,CAACG,GAAG,EAAEC,IAAI,EAAE;MACnBI,GAAG,GAAG;QACF,MAAMC,MAAM,GAAG,IAAI,CAACC,UAAU,EAAEC,aAAa,CAACJ,YAAY,CAAC;QAC3D,MAAMK,QAAQ,GAAGH,MAAM,EAAEI,gBAAgB,CAACX,OAAO,CAAC,IAAI,EAAE;QACxD,OAAQI,QAAQ,KAAKQ,SAAS,GACxBF,QAAQ,GACRA,QAAQ,CAACG,MAAM,CAAEC,IAAI,IAAKA,IAAI,CAACC,OAAO,CAACX,QAAQ,CAAC,CAAC;MAC3D;IACJ,CAAC,CAAC;EACN,CAAC;AACL",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

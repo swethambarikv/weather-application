@@ -1,0 +1,19 @@
+{
+  "ast": null,
+  "code": "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nexport * from '@lit/reactive-element';\nexport * from 'lit-html';\nexport * from './lit-element.js';",
+  "map": {
+    "version": 3,
+    "names": [],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/lit-element/development/index.js"
+    ],
+    "sourcesContent": [
+      "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nexport * from '@lit/reactive-element';\nexport * from 'lit-html';\nexport * from './lit-element.js';\n"
+    ],
+    "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA,cAAc,uBAAuB;AACrC,cAAc,UAAU;AACxB,cAAc,kBAAkB",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

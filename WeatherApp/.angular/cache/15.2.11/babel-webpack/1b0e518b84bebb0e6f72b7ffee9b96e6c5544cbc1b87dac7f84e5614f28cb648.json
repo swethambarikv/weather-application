@@ -1,0 +1,27 @@
+{
+  "ast": null,
+  "code": "import * as i0 from \"@angular/core\";\nimport * as i1 from \"@angular/common/http\";\nexport class WeatherService {\n  constructor(http) {\n    this.http = http;\n    this.apiUrl = 'path/to/weather_data.json';\n  }\n  getWeatherData(cityName) {\n    return this.http;\n    //  return this.http.get<WeatherData>(environment.weatherAPIBaseURL, {\n    //   headers : new HttpHeaders()\n    //   .set(environment.XRapidAPIHeaderName, environment.XRapidAPIHeaderValue)\n    //   .set(environment.XRapidAPIKeyHeaderName, environment.XRapidAPIKeyHeaderValue),\n    //   params : new HttpParams()\n    //   .set('q',cityName)\n    //   .set('units','metric')\n    //   .set('mode','json')\n    // })\n  }\n  static #_ = this.ɵfac = function WeatherService_Factory(t) {\n    return new (t || WeatherService)(i0.ɵɵinject(i1.HttpClient));\n  };\n  static #_2 = this.ɵprov = /*@__PURE__*/i0.ɵɵdefineInjectable({\n    token: WeatherService,\n    factory: WeatherService.ɵfac,\n    providedIn: 'root'\n  });\n}",
+  "map": {
+    "version": 3,
+    "mappings": ";;AAUA,OAAM,MAAOA,cAAc;EACzBC,YAAoBC,IAAgB;IAAhB,SAAI,GAAJA,IAAI;IAChB,WAAM,GAAG,2BAA2B;EADL;EAGhCC,cAAc,CAACC,QAAiB;IACrC,OAAO,IAAI,CAACF,IAAI;IAChB;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;EACF;EAAC;qBAfUF,cAAc;EAAA;EAAA;WAAdA,cAAc;IAAAK,SAAdL,cAAc;IAAAM,YAFb;EAAM",
+    "names": [
+      "WeatherService",
+      "constructor",
+      "http",
+      "getWeatherData",
+      "cityName",
+      "factory",
+      "providedIn"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/src/app/service/weather.service.ts"
+    ],
+    "sourcesContent": [
+      "import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { environment } from 'environment';\nimport { Observable } from 'rxjs';\n\nimport { WeatherData } from '../models/weather.model';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class WeatherService {\n  constructor(private http: HttpClient) {}\n  private apiUrl = 'path/to/weather_data.json';\n\n  public getWeatherData(cityName : string) : Observable<WeatherData>{\n    return this.http\n    //  return this.http.get<WeatherData>(environment.weatherAPIBaseURL, {\n    //   headers : new HttpHeaders()\n    //   .set(environment.XRapidAPIHeaderName, environment.XRapidAPIHeaderValue)\n    //   .set(environment.XRapidAPIKeyHeaderName, environment.XRapidAPIKeyHeaderValue),\n    //   params : new HttpParams()\n    //   .set('q',cityName)\n    //   .set('units','metric')\n    //   .set('mode','json')\n    // })\n  }\n}\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

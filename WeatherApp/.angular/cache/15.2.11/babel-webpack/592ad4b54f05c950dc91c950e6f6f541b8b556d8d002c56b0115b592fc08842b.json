@@ -1,0 +1,34 @@
+{
+  "ast": null,
+  "code": "import { __decorate } from \"tslib\";\nimport { Component } from '@angular/core';\nlet AppComponent = class AppComponent {\n  constructor(weatherService) {\n    this.weatherService = weatherService;\n    this.temperatureValue = 17;\n  }\n  ngOnInit() {\n    this.weatherService.getWeatherData('Wellington').subscribe(data => {\n      console.log('data check :', data);\n    });\n  }\n  onSubmit() {}\n};\nAppComponent = __decorate([Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})], AppComponent);\nexport { AppComponent };",
+  "map": {
+    "version": 3,
+    "mappings": ";AAAA,SAASA,SAAS,QAAgB,eAAe;AAO1C,IAAMC,YAAY,GAAlB,MAAMA,YAAY;EACvBC,YAAoBC,cAA+B;IAA/B,mBAAc,GAAdA,cAAc;IAE3B,qBAAgB,GAAG,EAAE;EAF0B;EAGtDC,QAAQ;IACN,IAAI,CAACD,cAAc,CAACE,cAAc,CAAC,YAAY,CAAC,CAC/CC,SAAS,CAAEC,IAAI,IAAI;MAClBC,OAAO,CAACC,GAAG,CAAC,cAAc,EAACF,IAAI,CAAC;IAClC,CAAC,CAAC;EACJ;EAEAG,QAAQ,IAER;CACD;AAdYT,YAAY,eALxBD,SAAS,CAAC;EACTW,QAAQ,EAAE,UAAU;EACpBC,WAAW,EAAE,sBAAsB;EACnCC,SAAS,EAAE,CAAC,sBAAsB;CACnC,CAAC,GACWZ,YAAY,CAcxB;SAdYA,YAAY",
+    "names": [
+      "Component",
+      "AppComponent",
+      "constructor",
+      "weatherService",
+      "ngOnInit",
+      "getWeatherData",
+      "subscribe",
+      "data",
+      "console",
+      "log",
+      "onSubmit",
+      "selector",
+      "templateUrl",
+      "styleUrls"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/src/app/app.component.ts"
+    ],
+    "sourcesContent": [
+      "import { Component, OnInit } from '@angular/core';\nimport { WeatherService } from './service/weather.service';\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n})\nexport class AppComponent implements OnInit {\n  constructor(private weatherService : WeatherService) {}\n  public cityName ?: string;\n  public temperatureValue = 17\n  ngOnInit(): void {\n    this.weatherService.getWeatherData('Wellington')\n    .subscribe((data) => {\n      console.log('data check :',data)\n    })\n  }\n\n  onSubmit() {\n\n  }\n}\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

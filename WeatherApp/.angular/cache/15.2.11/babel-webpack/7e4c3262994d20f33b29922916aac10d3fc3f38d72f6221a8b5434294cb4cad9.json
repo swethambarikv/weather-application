@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\n/**\n * Wraps up a few best practices when returning a property descriptor from a\n * decorator.\n *\n * Marks the defined property as configurable, and enumerable, and handles\n * the case where we have a busted Reflect.decorate zombiefill (e.g. in Angular\n * apps).\n *\n * @internal\n */\nexport const desc = (obj, name, descriptor) => {\n  // For backwards compatibility, we keep them configurable and enumerable.\n  descriptor.configurable = true;\n  descriptor.enumerable = true;\n  if (\n  // We check for Reflect.decorate each time, in case the zombiefill\n  // is applied via lazy loading some Angular code.\n  Reflect.decorate && typeof name !== 'object') {\n    // If we're called as a legacy decorator, and Reflect.decorate is present\n    // then we have no guarantees that the returned descriptor will be\n    // defined on the class, so we must apply it directly ourselves.\n    Object.defineProperty(obj, name, descriptor);\n  }\n  return descriptor;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "desc",
+      "obj",
+      "name",
+      "descriptor",
+      "configurable",
+      "enumerable",
+      "Reflect",
+      "decorate",
+      "Object",
+      "defineProperty"
+    ],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@lit/reactive-element/development/decorators/base.js"
+    ],
+    "sourcesContent": [
+      "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\n/**\n * Wraps up a few best practices when returning a property descriptor from a\n * decorator.\n *\n * Marks the defined property as configurable, and enumerable, and handles\n * the case where we have a busted Reflect.decorate zombiefill (e.g. in Angular\n * apps).\n *\n * @internal\n */\nexport const desc = (obj, name, descriptor) => {\n    // For backwards compatibility, we keep them configurable and enumerable.\n    descriptor.configurable = true;\n    descriptor.enumerable = true;\n    if (\n    // We check for Reflect.decorate each time, in case the zombiefill\n    // is applied via lazy loading some Angular code.\n    Reflect.decorate &&\n        typeof name !== 'object') {\n        // If we're called as a legacy decorator, and Reflect.decorate is present\n        // then we have no guarantees that the returned descriptor will be\n        // defined on the class, so we must apply it directly ourselves.\n        Object.defineProperty(obj, name, descriptor);\n    }\n    return descriptor;\n};\n"
+    ],
+    "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,OAAO,MAAMA,IAAI,GAAG,CAACC,GAAG,EAAEC,IAAI,EAAEC,UAAU,KAAK;EAC3C;EACAA,UAAU,CAACC,YAAY,GAAG,IAAI;EAC9BD,UAAU,CAACE,UAAU,GAAG,IAAI;EAC5B;EACA;EACA;EACAC,OAAO,CAACC,QAAQ,IACZ,OAAOL,IAAI,KAAK,QAAQ,EAAE;IAC1B;IACA;IACA;IACAM,MAAM,CAACC,cAAc,CAACR,GAAG,EAAEC,IAAI,EAAEC,UAAU,CAAC;EAChD;EACA,OAAOA,UAAU;AACrB,CAAC",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

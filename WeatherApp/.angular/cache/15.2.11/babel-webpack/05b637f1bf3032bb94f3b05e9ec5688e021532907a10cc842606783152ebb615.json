@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\n// Shared fragment used to generate empty NodeLists when a render root is\n// undefined\nlet fragment;\n/**\n * A property decorator that converts a class property into a getter\n * that executes a querySelectorAll on the element's renderRoot.\n *\n * @param selector A DOMString containing one or more selectors to match.\n *\n * See:\n * https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll\n *\n * ```ts\n * class MyElement {\n *   @queryAll('div')\n *   divs: NodeListOf<HTMLDivElement>;\n *\n *   render() {\n *     return html`\n *       <div id=\"first\"></div>\n *       <div id=\"second\"></div>\n *     `;\n *   }\n * }\n * ```\n * @category Decorator\n */\nexport function queryAll(selector) {\n  return (obj, name) => {\n    return desc(obj, name, {\n      get() {\n        const container = this.renderRoot ?? (fragment ??= document.createDocumentFragment());\n        return container.querySelectorAll(selector);\n      }\n    });\n  };\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "desc",
+      "fragment",
+      "queryAll",
+      "selector",
+      "obj",
+      "name",
+      "get",
+      "container",
+      "renderRoot",
+      "document",
+      "createDocumentFragment",
+      "querySelectorAll"
+    ],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@lit/reactive-element/development/decorators/query-all.js"
+    ],
+    "sourcesContent": [
+      "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\n// Shared fragment used to generate empty NodeLists when a render root is\n// undefined\nlet fragment;\n/**\n * A property decorator that converts a class property into a getter\n * that executes a querySelectorAll on the element's renderRoot.\n *\n * @param selector A DOMString containing one or more selectors to match.\n *\n * See:\n * https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll\n *\n * ```ts\n * class MyElement {\n *   @queryAll('div')\n *   divs: NodeListOf<HTMLDivElement>;\n *\n *   render() {\n *     return html`\n *       <div id=\"first\"></div>\n *       <div id=\"second\"></div>\n *     `;\n *   }\n * }\n * ```\n * @category Decorator\n */\nexport function queryAll(selector) {\n    return ((obj, name) => {\n        return desc(obj, name, {\n            get() {\n                const container = this.renderRoot ?? (fragment ??= document.createDocumentFragment());\n                return container.querySelectorAll(selector);\n            },\n        });\n    });\n}\n"
+    ],
+    "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA,SAASA,IAAI,QAAQ,WAAW;AAChC;AACA;AACA,IAAIC,QAAQ;AACZ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,OAAO,SAASC,QAAQ,CAACC,QAAQ,EAAE;EAC/B,OAAQ,CAACC,GAAG,EAAEC,IAAI,KAAK;IACnB,OAAOL,IAAI,CAACI,GAAG,EAAEC,IAAI,EAAE;MACnBC,GAAG,GAAG;QACF,MAAMC,SAAS,GAAG,IAAI,CAACC,UAAU,KAAKP,QAAQ,KAAKQ,QAAQ,CAACC,sBAAsB,EAAE,CAAC;QACrF,OAAOH,SAAS,CAACI,gBAAgB,CAACR,QAAQ,CAAC;MAC/C;IACJ,CAAC,CAAC;EACN,CAAC;AACL",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

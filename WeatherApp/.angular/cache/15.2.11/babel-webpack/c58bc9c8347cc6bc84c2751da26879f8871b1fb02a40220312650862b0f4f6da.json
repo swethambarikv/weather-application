@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "import '../app/lit-elements/weather';\nimport * as i0 from \"@angular/core\";\nimport * as i1 from \"@angular/router\";\nexport class AppComponent {\n  constructor() {}\n  static #_ = this.ɵfac = function AppComponent_Factory(t) {\n    return new (t || AppComponent)();\n  };\n  static #_2 = this.ɵcmp = /*@__PURE__*/i0.ɵɵdefineComponent({\n    type: AppComponent,\n    selectors: [[\"app-root\"]],\n    decls: 2,\n    vars: 0,\n    template: function AppComponent_Template(rf, ctx) {\n      if (rf & 1) {\n        i0.ɵɵelement(0, \"weather-display\")(1, \"router-outlet\");\n      }\n    },\n    dependencies: [i1.RouterOutlet],\n    styles: [\".container[_ngcontent-%COMP%] {\\n  display: flex;\\n  justify-content: center;\\n  align-items: center;\\n  height: 100vh;\\n}\\n\\n.search[_ngcontent-%COMP%] {\\n  margin-bottom: 20px;\\n}\\n\\ninput[type=text][_ngcontent-%COMP%] {\\n  padding: 10px;\\n  width: 200px;\\n  border: 1px solid #ccc;\\n  border-radius: 5px;\\n  font-size: 16px;\\n}\\n\\n.weather-container[_ngcontent-%COMP%] {\\n  border: 2px solid #ccc;\\n  border-radius: 10px;\\n  padding: 20px;\\n  width: 300px;\\n}\\n\\n.upper-data[_ngcontent-%COMP%] {\\n  text-align: center;\\n}\\n\\n.upper-data[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\\n  width: 100px;\\n  height: 100px;\\n  margin: 0 10px;\\n}\\n\\nhr[_ngcontent-%COMP%] {\\n  margin: 20px 0;\\n}\\n\\n.weather-data[_ngcontent-%COMP%] {\\n  text-align: center;\\n}\\n\\n.location[_ngcontent-%COMP%] {\\n  font-size: 24px;\\n  font-weight: bold;\\n}\\n\\n.temperature[_ngcontent-%COMP%] {\\n  font-size: 48px;\\n  font-weight: bold;\\n  color: #007bff;\\n}\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxhQUFBO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBQTtBQUNGOztBQUVBO0VBQ0UsYUFBQTtFQUNBLFlBQUE7RUFDQSxzQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQUNGOztBQUVBO0VBQ0Usc0JBQUE7RUFDQSxtQkFBQTtFQUNBLGFBQUE7RUFDQSxZQUFBO0FBQ0Y7O0FBRUE7RUFDRSxrQkFBQTtBQUNGOztBQUVBO0VBQ0UsWUFBQTtFQUNBLGFBQUE7RUFDQSxjQUFBO0FBQ0Y7O0FBRUE7RUFDRSxjQUFBO0FBQ0Y7O0FBRUE7RUFDRSxrQkFBQTtBQUNGOztBQUVBO0VBQ0UsZUFBQTtFQUNBLGlCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FBQ0YiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGhlaWdodDogMTAwdmg7XG59XG5cbi5zZWFyY2gge1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xufVxuXG5pbnB1dFt0eXBlPVwidGV4dFwiXSB7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIHdpZHRoOiAyMDBweDtcbiAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBmb250LXNpemU6IDE2cHg7XG59XG5cbi53ZWF0aGVyLWNvbnRhaW5lciB7XG4gIGJvcmRlcjogMnB4IHNvbGlkICNjY2M7XG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gIHBhZGRpbmc6IDIwcHg7XG4gIHdpZHRoOiAzMDBweDtcbn1cblxuLnVwcGVyLWRhdGEge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi51cHBlci1kYXRhIGltZyB7XG4gIHdpZHRoOiAxMDBweDtcbiAgaGVpZ2h0OiAxMDBweDtcbiAgbWFyZ2luOiAwIDEwcHg7XG59XG5cbmhyIHtcbiAgbWFyZ2luOiAyMHB4IDA7XG59XG5cbi53ZWF0aGVyLWRhdGEge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5sb2NhdGlvbiB7XG4gIGZvbnQtc2l6ZTogMjRweDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG5cbi50ZW1wZXJhdHVyZSB7XG4gIGZvbnQtc2l6ZTogNDhweDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIGNvbG9yOiAjMDA3YmZmO1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */\"]\n  });\n}",
+  "map": {
+    "version": 3,
+    "mappings": "AACA,OAAO,6BAA6B;;;AAOpC,OAAM,MAAOA,YAAY;EACvBC,eAAe;EAAC;qBADLD,YAAY;EAAA;EAAA;UAAZA,YAAY;IAAAE;IAAAC;IAAAC;IAAAC;MAAA;QCPzBC,kCAAmC",
+    "names": [
+      "AppComponent",
+      "constructor",
+      "selectors",
+      "decls",
+      "vars",
+      "template",
+      "i0"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/src/app/app.component.ts",
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/src/app/app.component.html"
+    ],
+    "sourcesContent": [
+      "import { Component } from '@angular/core';\nimport '../app/lit-elements/weather'\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n})\nexport class AppComponent {\n  constructor() {}\n}\n",
+      "\n<weather-display></weather-display>\n<router-outlet></router-outlet>\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "import { __decorate } from \"tslib\";\nimport { Component } from '@angular/core';\nlet AppComponent = class AppComponent {\n  constructor() {\n    this.title = 'WeatherApp';\n  }\n  ngOnInit() {}\n  onSubmit() {}\n};\nAppComponent = __decorate([Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})], AppComponent);\nexport { AppComponent };",
+  "map": {
+    "version": 3,
+    "mappings": ";AAAA,SAASA,SAAS,QAAgB,eAAe;AAO1C,IAAMC,YAAY,GAAlB,MAAMA,YAAY;EAAlBC;IACL,UAAK,GAAG,YAAY;EAOtB;EALEC,QAAQ,IAAU;EAElBC,QAAQ,IAER;CACD;AARYH,YAAY,eALxBD,SAAS,CAAC;EACTK,QAAQ,EAAE,UAAU;EACpBC,WAAW,EAAE,sBAAsB;EACnCC,SAAS,EAAE,CAAC,sBAAsB;CACnC,CAAC,GACWN,YAAY,CAQxB;SARYA,YAAY",
+    "names": [
+      "Component",
+      "AppComponent",
+      "constructor",
+      "ngOnInit",
+      "onSubmit",
+      "selector",
+      "templateUrl",
+      "styleUrls"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/src/app/app.component.ts"
+    ],
+    "sourcesContent": [
+      "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n})\nexport class AppComponent implements OnInit {\n  title = 'WeatherApp';\n\n  ngOnInit(): void {}\n\n  onSubmit() {\n    \n  }\n}\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

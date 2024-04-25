@@ -1,0 +1,39 @@
+{
+  "ast": null,
+  "code": "import { HttpHeaders, HttpParams } from '@angular/common/http';\nimport { environment } from 'environment';\nimport * as i0 from \"@angular/core\";\nimport * as i1 from \"@angular/common/http\";\nexport class WeatherService {\n  constructor(http) {\n    this.http = http;\n    this.apiUrl = 'assets/db.json';\n  }\n  getWeatherData(cityName) {\n    return this.http.get(environment.weatherAPIBaseURL, {\n      headers: new HttpHeaders().set(environment.XRapidAPIHeaderName, environment.XRapidAPIHeaderValue).set(environment.XRapidAPIKeyHeaderName, environment.XRapidAPIKeyHeaderValue),\n      params: new HttpParams().set('q', cityName).set('units', 'metric').set('mode', 'json')\n    });\n  }\n  static #_ = this.ɵfac = function WeatherService_Factory(t) {\n    return new (t || WeatherService)(i0.ɵɵinject(i1.HttpClient));\n  };\n  static #_2 = this.ɵprov = /*@__PURE__*/i0.ɵɵdefineInjectable({\n    token: WeatherService,\n    factory: WeatherService.ɵfac,\n    providedIn: 'root'\n  });\n}",
+  "map": {
+    "version": 3,
+    "mappings": "AAAA,SAAqBA,WAAW,EAAEC,UAAU,QAAQ,sBAAsB;AAE1E,SAASC,WAAW,QAAQ,aAAa;;;AAQzC,OAAM,MAAOC,cAAc;EACzBC,YAAoBC,IAAgB;IAAhB,SAAI,GAAJA,IAAI;IAChB,WAAM,GAAG,gBAAgB;EADM;EAGhCC,cAAc,CAACC,QAAgB;IACnC,OAAO,IAAI,CAACF,IAAI,CAACG,GAAG,CAAcN,WAAW,CAACO,iBAAiB,EAAE;MAChEC,OAAO,EAAG,IAAIV,WAAW,EAAE,CAC1BW,GAAG,CAACT,WAAW,CAACU,mBAAmB,EAAEV,WAAW,CAACW,oBAAoB,CAAC,CACtEF,GAAG,CAACT,WAAW,CAACY,sBAAsB,EAAEZ,WAAW,CAACa,uBAAuB,CAAC;MAC7EC,MAAM,EAAG,IAAIf,UAAU,EAAE,CACxBU,GAAG,CAAC,GAAG,EAACJ,QAAQ,CAAC,CACjBI,GAAG,CAAC,OAAO,EAAC,QAAQ,CAAC,CACrBA,GAAG,CAAC,MAAM,EAAC,MAAM;KACnB,CAAC;EACJ;EAAC;qBAdUR,cAAc;EAAA;EAAA;WAAdA,cAAc;IAAAc,SAAdd,cAAc;IAAAe,YAFb;EAAM",
+    "names": [
+      "HttpHeaders",
+      "HttpParams",
+      "environment",
+      "WeatherService",
+      "constructor",
+      "http",
+      "getWeatherData",
+      "cityName",
+      "get",
+      "weatherAPIBaseURL",
+      "headers",
+      "set",
+      "XRapidAPIHeaderName",
+      "XRapidAPIHeaderValue",
+      "XRapidAPIKeyHeaderName",
+      "XRapidAPIKeyHeaderValue",
+      "params",
+      "factory",
+      "providedIn"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/src/app/service/weather.service.ts"
+    ],
+    "sourcesContent": [
+      "import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { environment } from 'environment'\nimport { Observable } from 'rxjs'\n\nimport { WeatherData } from '../models/weather.model'\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class WeatherService {\n  constructor(private http: HttpClient) {}\n  private apiUrl = 'assets/db.json'\n\n  public getWeatherData(cityName: string): Observable<any> {\n     return this.http.get<WeatherData>(environment.weatherAPIBaseURL, {\n      headers : new HttpHeaders()\n      .set(environment.XRapidAPIHeaderName, environment.XRapidAPIHeaderValue)\n      .set(environment.XRapidAPIKeyHeaderName, environment.XRapidAPIKeyHeaderValue),\n      params : new HttpParams()\n      .set('q',cityName)\n      .set('units','metric')\n      .set('mode','json')\n    })\n  }\n}\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

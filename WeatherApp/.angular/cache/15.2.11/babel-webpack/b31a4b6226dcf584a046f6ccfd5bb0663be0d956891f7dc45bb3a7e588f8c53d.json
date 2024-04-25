@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\n/**\n * A property decorator that converts a class property into a getter that\n * returns the `assignedNodes` of the given `slot`.\n *\n * Can be passed an optional {@linkcode QueryAssignedNodesOptions} object.\n *\n * Example usage:\n * ```ts\n * class MyElement {\n *   @queryAssignedNodes({slot: 'list', flatten: true})\n *   listItems!: Array<Node>;\n *\n *   render() {\n *     return html`\n *       <slot name=\"list\"></slot>\n *     `;\n *   }\n * }\n * ```\n *\n * Note the type of this property should be annotated as `Array<Node>`. Use the\n * queryAssignedElements decorator to list only elements, and optionally filter\n * the element list using a CSS selector.\n *\n * @category Decorator\n */\nexport function queryAssignedNodes(options) {\n  // eslint-disable-next-line @typescript-eslint/no-explicit-any\n  return (obj, name) => {\n    const {\n      slot\n    } = options ?? {};\n    const slotSelector = `slot${slot ? `[name=${slot}]` : ':not([name])'}`;\n    return desc(obj, name, {\n      get() {\n        const slotEl = this.renderRoot?.querySelector(slotSelector);\n        return slotEl?.assignedNodes(options) ?? [];\n      }\n    });\n  };\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "desc",
+      "queryAssignedNodes",
+      "options",
+      "obj",
+      "name",
+      "slot",
+      "slotSelector",
+      "get",
+      "slotEl",
+      "renderRoot",
+      "querySelector",
+      "assignedNodes"
+    ],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@lit/reactive-element/development/decorators/query-assigned-nodes.js"
+    ],
+    "sourcesContent": [
+      "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\n/**\n * A property decorator that converts a class property into a getter that\n * returns the `assignedNodes` of the given `slot`.\n *\n * Can be passed an optional {@linkcode QueryAssignedNodesOptions} object.\n *\n * Example usage:\n * ```ts\n * class MyElement {\n *   @queryAssignedNodes({slot: 'list', flatten: true})\n *   listItems!: Array<Node>;\n *\n *   render() {\n *     return html`\n *       <slot name=\"list\"></slot>\n *     `;\n *   }\n * }\n * ```\n *\n * Note the type of this property should be annotated as `Array<Node>`. Use the\n * queryAssignedElements decorator to list only elements, and optionally filter\n * the element list using a CSS selector.\n *\n * @category Decorator\n */\nexport function queryAssignedNodes(options) {\n    // eslint-disable-next-line @typescript-eslint/no-explicit-any\n    return ((obj, name) => {\n        const { slot } = options ?? {};\n        const slotSelector = `slot${slot ? `[name=${slot}]` : ':not([name])'}`;\n        return desc(obj, name, {\n            get() {\n                const slotEl = this.renderRoot?.querySelector(slotSelector);\n                return (slotEl?.assignedNodes(options) ?? []);\n            },\n        });\n    });\n}\n"
+    ],
+    "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA,SAASA,IAAI,QAAQ,WAAW;AAChC;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,OAAO,SAASC,kBAAkB,CAACC,OAAO,EAAE;EACxC;EACA,OAAQ,CAACC,GAAG,EAAEC,IAAI,KAAK;IACnB,MAAM;MAAEC;IAAK,CAAC,GAAGH,OAAO,IAAI,CAAC,CAAC;IAC9B,MAAMI,YAAY,GAAI,OAAMD,IAAI,GAAI,SAAQA,IAAK,GAAE,GAAG,cAAe,EAAC;IACtE,OAAOL,IAAI,CAACG,GAAG,EAAEC,IAAI,EAAE;MACnBG,GAAG,GAAG;QACF,MAAMC,MAAM,GAAG,IAAI,CAACC,UAAU,EAAEC,aAAa,CAACJ,YAAY,CAAC;QAC3D,OAAQE,MAAM,EAAEG,aAAa,CAACT,OAAO,CAAC,IAAI,EAAE;MAChD;IACJ,CAAC,CAAC;EACN,CAAC;AACL",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

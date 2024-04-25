@@ -1,0 +1,56 @@
+{
+  "ast": null,
+  "code": "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\nconst DEV_MODE = true;\nlet issueWarning;\nif (DEV_MODE) {\n  // Ensure warnings are issued only 1x, even if multiple versions of Lit\n  // are loaded.\n  const issuedWarnings = globalThis.litIssuedWarnings ??= new Set();\n  // Issue a warning, if we haven't already.\n  issueWarning = (code, warning) => {\n    warning += code ? ` See https://lit.dev/msg/${code} for more information.` : '';\n    if (!issuedWarnings.has(warning)) {\n      console.warn(warning);\n      issuedWarnings.add(warning);\n    }\n  };\n}\n/**\n * A property decorator that converts a class property into a getter that\n * executes a querySelector on the element's renderRoot.\n *\n * @param selector A DOMString containing one or more selectors to match.\n * @param cache An optional boolean which when true performs the DOM query only\n *     once and caches the result.\n *\n * See: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector\n *\n * ```ts\n * class MyElement {\n *   @query('#first')\n *   first: HTMLDivElement;\n *\n *   render() {\n *     return html`\n *       <div id=\"first\"></div>\n *       <div id=\"second\"></div>\n *     `;\n *   }\n * }\n * ```\n * @category Decorator\n */\nexport function query(selector, cache) {\n  return (protoOrTarget, nameOrContext, descriptor) => {\n    const doQuery = el => {\n      const result = el.renderRoot?.querySelector(selector) ?? null;\n      if (DEV_MODE && result === null && cache && !el.hasUpdated) {\n        const name = typeof nameOrContext === 'object' ? nameOrContext.name : nameOrContext;\n        issueWarning('', `@query'd field ${JSON.stringify(String(name))} with the 'cache' ` + `flag set for selector '${selector}' has been accessed before ` + `the first update and returned null. This is expected if the ` + `renderRoot tree has not been provided beforehand (e.g. via ` + `Declarative Shadow DOM). Therefore the value hasn't been cached.`);\n      }\n      // TODO: if we want to allow users to assert that the query will never\n      // return null, we need a new option and to throw here if the result\n      // is null.\n      return result;\n    };\n    if (cache) {\n      // Accessors to wrap from either:\n      //   1. The decorator target, in the case of standard decorators\n      //   2. The property descriptor, in the case of experimental decorators\n      //      on auto-accessors.\n      //   3. Functions that access our own cache-key property on the instance,\n      //      in the case of experimental decorators on fields.\n      const {\n        get,\n        set\n      } = typeof nameOrContext === 'object' ? protoOrTarget : descriptor ?? (() => {\n        const key = DEV_MODE ? Symbol(`${String(nameOrContext)} (@query() cache)`) : Symbol();\n        return {\n          get() {\n            return this[key];\n          },\n          set(v) {\n            this[key] = v;\n          }\n        };\n      })();\n      return desc(protoOrTarget, nameOrContext, {\n        get() {\n          let result = get.call(this);\n          if (result === undefined) {\n            result = doQuery(this);\n            if (result !== null || this.hasUpdated) {\n              set.call(this, result);\n            }\n          }\n          return result;\n        }\n      });\n    } else {\n      // This object works as the return type for both standard and\n      // experimental decorators.\n      return desc(protoOrTarget, nameOrContext, {\n        get() {\n          return doQuery(this);\n        }\n      });\n    }\n  };\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "desc",
+      "DEV_MODE",
+      "issueWarning",
+      "issuedWarnings",
+      "globalThis",
+      "litIssuedWarnings",
+      "Set",
+      "code",
+      "warning",
+      "has",
+      "console",
+      "warn",
+      "add",
+      "query",
+      "selector",
+      "cache",
+      "protoOrTarget",
+      "nameOrContext",
+      "descriptor",
+      "doQuery",
+      "el",
+      "result",
+      "renderRoot",
+      "querySelector",
+      "hasUpdated",
+      "name",
+      "JSON",
+      "stringify",
+      "String",
+      "get",
+      "set",
+      "key",
+      "Symbol",
+      "v",
+      "call",
+      "undefined"
+    ],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@lit/reactive-element/development/decorators/query.js"
+    ],
+    "sourcesContent": [
+      "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\nconst DEV_MODE = true;\nlet issueWarning;\nif (DEV_MODE) {\n    // Ensure warnings are issued only 1x, even if multiple versions of Lit\n    // are loaded.\n    const issuedWarnings = (globalThis.litIssuedWarnings ??= new Set());\n    // Issue a warning, if we haven't already.\n    issueWarning = (code, warning) => {\n        warning += code\n            ? ` See https://lit.dev/msg/${code} for more information.`\n            : '';\n        if (!issuedWarnings.has(warning)) {\n            console.warn(warning);\n            issuedWarnings.add(warning);\n        }\n    };\n}\n/**\n * A property decorator that converts a class property into a getter that\n * executes a querySelector on the element's renderRoot.\n *\n * @param selector A DOMString containing one or more selectors to match.\n * @param cache An optional boolean which when true performs the DOM query only\n *     once and caches the result.\n *\n * See: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector\n *\n * ```ts\n * class MyElement {\n *   @query('#first')\n *   first: HTMLDivElement;\n *\n *   render() {\n *     return html`\n *       <div id=\"first\"></div>\n *       <div id=\"second\"></div>\n *     `;\n *   }\n * }\n * ```\n * @category Decorator\n */\nexport function query(selector, cache) {\n    return ((protoOrTarget, nameOrContext, descriptor) => {\n        const doQuery = (el) => {\n            const result = (el.renderRoot?.querySelector(selector) ?? null);\n            if (DEV_MODE && result === null && cache && !el.hasUpdated) {\n                const name = typeof nameOrContext === 'object'\n                    ? nameOrContext.name\n                    : nameOrContext;\n                issueWarning('', `@query'd field ${JSON.stringify(String(name))} with the 'cache' ` +\n                    `flag set for selector '${selector}' has been accessed before ` +\n                    `the first update and returned null. This is expected if the ` +\n                    `renderRoot tree has not been provided beforehand (e.g. via ` +\n                    `Declarative Shadow DOM). Therefore the value hasn't been cached.`);\n            }\n            // TODO: if we want to allow users to assert that the query will never\n            // return null, we need a new option and to throw here if the result\n            // is null.\n            return result;\n        };\n        if (cache) {\n            // Accessors to wrap from either:\n            //   1. The decorator target, in the case of standard decorators\n            //   2. The property descriptor, in the case of experimental decorators\n            //      on auto-accessors.\n            //   3. Functions that access our own cache-key property on the instance,\n            //      in the case of experimental decorators on fields.\n            const { get, set } = typeof nameOrContext === 'object'\n                ? protoOrTarget\n                : descriptor ??\n                    (() => {\n                        const key = DEV_MODE\n                            ? Symbol(`${String(nameOrContext)} (@query() cache)`)\n                            : Symbol();\n                        return {\n                            get() {\n                                return this[key];\n                            },\n                            set(v) {\n                                this[key] = v;\n                            },\n                        };\n                    })();\n            return desc(protoOrTarget, nameOrContext, {\n                get() {\n                    let result = get.call(this);\n                    if (result === undefined) {\n                        result = doQuery(this);\n                        if (result !== null || this.hasUpdated) {\n                            set.call(this, result);\n                        }\n                    }\n                    return result;\n                },\n            });\n        }\n        else {\n            // This object works as the return type for both standard and\n            // experimental decorators.\n            return desc(protoOrTarget, nameOrContext, {\n                get() {\n                    return doQuery(this);\n                },\n            });\n        }\n    });\n}\n"
+    ],
+    "mappings": "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",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

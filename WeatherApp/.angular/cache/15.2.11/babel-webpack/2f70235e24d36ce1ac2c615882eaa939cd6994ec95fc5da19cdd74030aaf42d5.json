@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "export function noop() {}",
+  "map": {
+    "version": 3,
+    "names": ["noop"],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/rxjs/dist/esm/internal/util/noop.js"
+    ],
+    "sourcesContent": ["export function noop() { }\n"],
+    "mappings": "AAAA,OAAO,SAASA,IAAI,GAAG,CAAE",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

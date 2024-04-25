@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\n/**\n * Class decorator factory that defines the decorated class as a custom element.\n *\n * ```js\n * @customElement('my-element')\n * class MyElement extends LitElement {\n *   render() {\n *     return html``;\n *   }\n * }\n * ```\n * @category Decorator\n * @param tagName The tag name of the custom element to define.\n */\nexport const customElement = tagName => (classOrTarget, context) => {\n  if (context !== undefined) {\n    context.addInitializer(() => {\n      customElements.define(tagName, classOrTarget);\n    });\n  } else {\n    customElements.define(tagName, classOrTarget);\n  }\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "customElement",
+      "tagName",
+      "classOrTarget",
+      "context",
+      "undefined",
+      "addInitializer",
+      "customElements",
+      "define"
+    ],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@lit/reactive-element/development/decorators/custom-element.js"
+    ],
+    "sourcesContent": [
+      "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\n/**\n * Class decorator factory that defines the decorated class as a custom element.\n *\n * ```js\n * @customElement('my-element')\n * class MyElement extends LitElement {\n *   render() {\n *     return html``;\n *   }\n * }\n * ```\n * @category Decorator\n * @param tagName The tag name of the custom element to define.\n */\nexport const customElement = (tagName) => (classOrTarget, context) => {\n    if (context !== undefined) {\n        context.addInitializer(() => {\n            customElements.define(tagName, classOrTarget);\n        });\n    }\n    else {\n        customElements.define(tagName, classOrTarget);\n    }\n};\n"
+    ],
+    "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,OAAO,MAAMA,aAAa,GAAIC,OAAO,IAAK,CAACC,aAAa,EAAEC,OAAO,KAAK;EAClE,IAAIA,OAAO,KAAKC,SAAS,EAAE;IACvBD,OAAO,CAACE,cAAc,CAAC,MAAM;MACzBC,cAAc,CAACC,MAAM,CAACN,OAAO,EAAEC,aAAa,CAAC;IACjD,CAAC,CAAC;EACN,CAAC,MACI;IACDI,cAAc,CAACC,MAAM,CAACN,OAAO,EAAEC,aAAa,CAAC;EACjD;AACJ,CAAC",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

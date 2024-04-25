@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "import _asyncToGenerator from \"/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js\";\n/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\n// Note, in the future, we may extend this decorator to support the use case\n// where the queried element may need to do work to become ready to interact\n// with (e.g. load some implementation code). If so, we might elect to\n// add a second argument defining a function that can be run to make the\n// queried element loaded/updated/ready.\n/**\n * A property decorator that converts a class property into a getter that\n * returns a promise that resolves to the result of a querySelector on the\n * element's renderRoot done after the element's `updateComplete` promise\n * resolves. When the queried property may change with element state, this\n * decorator can be used instead of requiring users to await the\n * `updateComplete` before accessing the property.\n *\n * @param selector A DOMString containing one or more selectors to match.\n *\n * See: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector\n *\n * ```ts\n * class MyElement {\n *   @queryAsync('#first')\n *   first: Promise<HTMLDivElement>;\n *\n *   render() {\n *     return html`\n *       <div id=\"first\"></div>\n *       <div id=\"second\"></div>\n *     `;\n *   }\n * }\n *\n * // external usage\n * async doSomethingWithFirst() {\n *  (await aMyElement.first).doSomething();\n * }\n * ```\n * @category Decorator\n */\nexport function queryAsync(selector) {\n  return (obj, name) => {\n    return desc(obj, name, {\n      get() {\n        var _this = this;\n        return _asyncToGenerator(function* () {\n          yield _this.updateComplete;\n          return _this.renderRoot?.querySelector(selector) ?? null;\n        })();\n      }\n    });\n  };\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "desc",
+      "queryAsync",
+      "selector",
+      "obj",
+      "name",
+      "get",
+      "updateComplete",
+      "renderRoot",
+      "querySelector"
+    ],
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/node_modules/@lit/reactive-element/development/decorators/query-async.js"
+    ],
+    "sourcesContent": [
+      "/**\n * @license\n * Copyright 2017 Google LLC\n * SPDX-License-Identifier: BSD-3-Clause\n */\nimport { desc } from './base.js';\n// Note, in the future, we may extend this decorator to support the use case\n// where the queried element may need to do work to become ready to interact\n// with (e.g. load some implementation code). If so, we might elect to\n// add a second argument defining a function that can be run to make the\n// queried element loaded/updated/ready.\n/**\n * A property decorator that converts a class property into a getter that\n * returns a promise that resolves to the result of a querySelector on the\n * element's renderRoot done after the element's `updateComplete` promise\n * resolves. When the queried property may change with element state, this\n * decorator can be used instead of requiring users to await the\n * `updateComplete` before accessing the property.\n *\n * @param selector A DOMString containing one or more selectors to match.\n *\n * See: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector\n *\n * ```ts\n * class MyElement {\n *   @queryAsync('#first')\n *   first: Promise<HTMLDivElement>;\n *\n *   render() {\n *     return html`\n *       <div id=\"first\"></div>\n *       <div id=\"second\"></div>\n *     `;\n *   }\n * }\n *\n * // external usage\n * async doSomethingWithFirst() {\n *  (await aMyElement.first).doSomething();\n * }\n * ```\n * @category Decorator\n */\nexport function queryAsync(selector) {\n    return ((obj, name) => {\n        return desc(obj, name, {\n            async get() {\n                await this.updateComplete;\n                return this.renderRoot?.querySelector(selector) ?? null;\n            },\n        });\n    });\n}\n"
+    ],
+    "mappings": ";AAAA;AACA;AACA;AACA;AACA;AACA,SAASA,IAAI,QAAQ,WAAW;AAChC;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,OAAO,SAASC,UAAU,CAACC,QAAQ,EAAE;EACjC,OAAQ,CAACC,GAAG,EAAEC,IAAI,KAAK;IACnB,OAAOJ,IAAI,CAACG,GAAG,EAAEC,IAAI,EAAE;MACbC,GAAG,GAAG;QAAA;QAAA;UACR,MAAM,KAAI,CAACC,cAAc;UACzB,OAAO,KAAI,CAACC,UAAU,EAAEC,aAAa,CAACN,QAAQ,CAAC,IAAI,IAAI;QAAC;MAC5D;IACJ,CAAC,CAAC;EACN,CAAC;AACL",
+    "ignoreList": []
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

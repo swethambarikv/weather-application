@@ -1,0 +1,35 @@
+{
+  "ast": null,
+  "code": "import { LitElement } from 'lit';\nimport { html } from 'lit-html';\nclass SearchInput extends LitElement {\n  static #_ = this.properties = {\n    cityName: {\n      type: String\n    }\n  };\n  render() {\n    return html`\n      <div class=\"search\">\n        <form @submit=\"${this.onSubmit}\">\n          <input type=\"text\" placeholder=\"Search City\" .value=\"${this.cityName}\" @input=\"${this.onInput}\">\n        </form>\n      </div>\n    `;\n  }\n  onSubmit(event) {\n    event.preventDefault();\n  }\n  onInput(event) {\n    this.cityName = event.target.value;\n  }\n}\ncustomElements.define('search-input', SearchInput);",
+  "map": {
+    "version": 3,
+    "mappings": "AAAA,SAASA,UAAU,QAAQ,KAAK;AAEhC,SAAQC,IAAI,QAAe,UAAU;AACrC,MAAMC,WAAY,SAAQF,UAAU;EAAA,YAClB,eAAU,GAAG;IAC3BG,QAAQ,EAAE;MAAEC,IAAI,EAAEC;IAAM;GACzB;EAGQC,MAAM;IACb,OAAOL,IAAI;;yBAEU,IAAI,CAACM,QAAQ;iEAC2B,IAAI,CAACJ,QAAQ,aAAa,IAAI,CAACK,OAAO;;;KAGlG;EACH;EAEAD,QAAQ,CAACE,KAAW;IAClBA,KAAK,CAACC,cAAc,EAAE;EACxB;EAEAF,OAAO,CAACC,KAAW;IACjB,IAAI,CAACN,QAAQ,GAAGM,KAAK,CAACE,MAAM,CAACC,KAAK;EACpC;;AAGFC,cAAc,CAACC,MAAM,CAAC,cAAc,EAAEZ,WAAW,CAAC",
+    "names": [
+      "LitElement",
+      "html",
+      "SearchInput",
+      "cityName",
+      "type",
+      "String",
+      "render",
+      "onSubmit",
+      "onInput",
+      "event",
+      "preventDefault",
+      "target",
+      "value",
+      "customElements",
+      "define"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "/home/asplap2479/Documents/Learning/weather-application/WeatherApp/src/app/lit-elements/search-input.ts"
+    ],
+    "sourcesContent": [
+      "import { LitElement } from 'lit';\n\nimport {html, render} from 'lit-html';\nclass SearchInput extends LitElement {\n  static override properties = {\n    cityName: { type: String }\n  };\n  cityName: unknown;\n\n  override render() {\n    return html`\n      <div class=\"search\">\n        <form @submit=\"${this.onSubmit}\">\n          <input type=\"text\" placeholder=\"Search City\" .value=\"${this.cityName}\" @input=\"${this.onInput}\">\n        </form>\n      </div>\n    `;\n  }\n\n  onSubmit(event : any) {\n    event.preventDefault();\n  }\n\n  onInput(event : any) {\n    this.cityName = event.target.value;\n  }\n}\n\ncustomElements.define('search-input', SearchInput);\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}
